@@ -13,3 +13,6 @@ export * from "./quizQuestionRepository";
 export * from "./quizOptionRepository";
 export * from "./quizAttemptRepository";
 export * from "./attemptAnswerRepository";
+export * from "./sessionRepository";
+export * from "./passwordResetTokenRepository";
+export * from "./dashboardRepository";

@@ -1,4 +1,5 @@
 export * from "./authServices";
+export * from "./emailServices";
 export * from "./userServices";
 export * from "./categoryServices";
 export * from "./courseServices";
@@ -11,3 +12,4 @@ export * from "./enrollmentServices";
 export * from "./reviewServices";
 export * from "./progressServices";
 export * from "./quizServices";
+export * from "./dashboardServices";

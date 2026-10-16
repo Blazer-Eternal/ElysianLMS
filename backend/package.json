@@ -9,7 +9,9 @@
     "start": "node dist/server.js",
     "migrate": "sequelize-cli db:migrate",
     "migrate:undo": "sequelize-cli db:migrate:undo",
-    "seed:admin": "tsx src/seeders/adminSeeder.ts"
+    "seed:admin": "tsx src/seeders/adminSeeder.ts",
+    "seed:base": "tsx src/seeders/baseSeeder.ts",
+    "seed:demo": "tsx src/seeders/demo/seedDemo.ts"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +23,7 @@
     "cors": "^2.8.6",
     "dotenv": "^18.0.7",
     "express": "^5.3.0",
+    "express-rate-limit": "^8.7.1",
     "helmet": "^8.3.0",
     "jsonwebtoken": "^9.0.3",
     "morgan": "^1.12.1",

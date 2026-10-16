@@ -14,6 +14,7 @@ import enrollmentRoutes from "./enrollmentRoutes";
 import reviewRoutes from "./reviewRoutes";
 import progressRoutes from "./progressRoutes";
 import quizRoutes from "./quizRoutes";
+import dashboardRoutes from "./dashboardRoutes";
 
 const router = express.Router();
 
@@ -33,5 +34,6 @@ router.use("/", enrollmentRoutes);
 router.use("/", reviewRoutes);
 router.use("/", progressRoutes);
 router.use("/", quizRoutes);
+router.use("/", dashboardRoutes);
 
 export default router;

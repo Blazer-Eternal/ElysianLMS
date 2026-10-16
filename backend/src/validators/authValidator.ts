@@ -23,4 +23,30 @@ const changePasswordValidator = z
     path: ["newPassword"],
   });
 
-export { signupValidator, loginValidator, changePasswordValidator };
+const refreshValidator = z.object({
+  refreshToken: z.string().min(20).max(512),
+});
+
+const logoutValidator = z.object({
+  // optional: logging out without a token is a client-side discard
+  refreshToken: z.string().min(20).max(512).optional(),
+});
+
+const forgotPasswordValidator = z.object({
+  email: z.email(),
+});
+
+const resetPasswordValidator = z.object({
+  token: z.string().min(20).max(512),
+  newPassword: z.string().min(8).max(72),
+});
+
+export {
+  signupValidator,
+  loginValidator,
+  changePasswordValidator,
+  refreshValidator,
+  logoutValidator,
+  forgotPasswordValidator,
+  resetPasswordValidator,
+};

@@ -4,12 +4,13 @@ import helmet from "helmet";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import router from "./api/routes";
-import { errorHandler } from "./middleware";
+import { corsOptions } from "./config";
+import { errorHandler, globalLimiter } from "./middleware";
 
 const app = express();
 
 app.use(helmet());
-app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
+app.use(cors(corsOptions));
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
@@ -47,6 +48,7 @@ app.get("/", (_req, res) => {
   `);
 });
 
+app.use("/api", globalLimiter);
 app.use("/api", router);
 app.use(errorHandler);
 
