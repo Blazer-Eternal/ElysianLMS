@@ -7,7 +7,7 @@ node_modules/
 .pnp.cjs
 
 # ==========================================
-# NEXT.JS SPECIFIC
+# NEXT.JS / BUILD
 # ==========================================
 .next/
 out/
@@ -22,9 +22,8 @@ dist/
 next-env.d.ts
 
 # ==========================================
-# ENVIRONMENT VARIABLES (CRITICAL)
+# ENVIRONMENT VARIABLES
 # ==========================================
-# Ignore all .env files to protect your PostgreSQL credentials
 .env
 .env.*
 !.env.example
@@ -36,17 +35,14 @@ next-env.d.ts
 .cache/
 .eslintcache
 .stylelintcache
-*.tsbuildinfo
 
 # ==========================================
-# DATABASE (PostgreSQL / pgAdmin)
+# DATABASE
 # ==========================================
-# Ignore local database dumps and backups
 *.sql
 *.sql.gz
 *.dump
 *.backup
-# Ignore pgAdmin local storage (if kept in project)
 pgadmin-data/
 
 # ==========================================
@@ -95,3 +91,4 @@ Desktop.ini
 # ==========================================
 .vercel
 .turbo
+AGENTS.md

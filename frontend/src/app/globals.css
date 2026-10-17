@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ * Elysian design system
+ *
+ * Palette: warm paper, pine green, amber, clay. No gradients anywhere.
+ * Type: Fraunces (display), Hanken Grotesk (UI/body), IBM Plex Mono
+ * (numerals, labels). Dark mode is class-based with its own high
+ * contrast pairings, never a dimmed copy of the light theme.
+ * ------------------------------------------------------------------ */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* light theme */
+  --paper: #faf8f3;
+  --surface: #ffffff;
+  --surface-muted: #f3f0e8;
+  --ink: #1b1b17;
+  --ink-muted: #5b5a51;
+  --line: #e5e0d4;
+  --line-strong: #cfc9ba;
+
+  --pine: #23503f;
+  --pine-deep: #16362a;
+  --pine-soft: #eaf1ec;
+  --amber: #9a6b16;
+  --amber-soft: #f6eedd;
+  --clay: #9c3a21;
+  --clay-soft: #f8ebe6;
+
+  --ring: #23503f;
+}
+
+.dark {
+  /* dark theme: warm near-black surfaces, near-white ink */
+  --paper: #131410;
+  --surface: #1a1b16;
+  --surface-muted: #212219;
+  --ink: #f1eee4;
+  --ink-muted: #a9a79a;
+  --line: #2f3027;
+  --line-strong: #44453a;
+
+  --pine: #8fc3a8;
+  --pine-deep: #b7dbc6;
+  --pine-soft: #1d2a23;
+  --amber: #d9a94f;
+  --amber-soft: #2a2415;
+  --clay: #e08b6d;
+  --clay-soft: #2e1d16;
+
+  --ring: #8fc3a8;
+}
+
+@theme inline {
+  --font-display: "Fraunces Variable", "Fraunces", Georgia, "Times New Roman", serif;
+  --font-sans: "Hanken Grotesk Variable", "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+
+  --color-pine: var(--pine);
+  --color-pine-deep: var(--pine-deep);
+  --color-pine-soft: var(--pine-soft);
+  --color-amber: var(--amber);
+  --color-amber-soft: var(--amber-soft);
+  --color-clay: var(--clay);
+  --color-clay-soft: var(--clay-soft);
+
+  --color-ring: var(--ring);
+
+  --radius-card: 10px;
+  --radius-control: 8px;
+}
+
+@layer base {
+  * {
+    border-color: var(--line);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Fraunces gets its optical size + weight character here, so every
+     display heading shares one voice. */
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    letter-spacing: -0.01em;
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+
+  ::selection {
+    background: var(--pine);
+    color: var(--paper);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Small caps label used above sections and in table headers */
+  .label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  /* Animated underline for text links: grows from the left, no opacity games */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 1px;
+    transition: background-size 180ms ease;
+  }
+  .link-underline:hover {
+    background-size: 100% 1px;
+  }
+
+  /* Editorial ruled container, the only "card" variant that uses a top rule */
+  .rule-top {
+    border-top: 2px solid var(--ink);
+    padding-top: 1rem;
+  }
+}
