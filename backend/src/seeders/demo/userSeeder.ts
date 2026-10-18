@@ -6,7 +6,9 @@ import Models from "../../models";
 // TAs intentionally keep role=student: their power comes purely from
 // course_staff membership, which is exactly what we want to test.
 export const DEMO_PASSWORD = "Password123!";
-export const DEMO_EMAIL_DOMAIN = "demo.elysian.com";
+// Demo (non-admin) accounts use a neutral placeholder domain. The @elysian
+// domain is reserved for the admin account, seeded separately via adminSeeder.
+export const DEMO_EMAIL_DOMAIN = "example.com";
 
 const USERS: { key: string; name: string; role: RoleEnum }[] = [
   // Instructors
