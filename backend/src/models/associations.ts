@@ -15,6 +15,7 @@ import QuizQuestions from "./quizQuestionModel";
 import QuizOptions from "./quizOptionModel";
 import QuizAttempts from "./quizAttemptModel";
 import AttemptAnswers from "./attemptAnswerModel";
+import EmailOtps from "./emailOtpModel";
 
 // users 1 — * sessions
 Users.hasMany(Sessions, { foreignKey: "userId", onDelete: "CASCADE" });
@@ -23,6 +24,10 @@ Sessions.belongsTo(Users, { foreignKey: "userId" });
 // users 1 — * password_reset_tokens
 Users.hasMany(PasswordResetTokens, { foreignKey: "userId", onDelete: "CASCADE" });
 PasswordResetTokens.belongsTo(Users, { foreignKey: "userId" });
+
+// users 1 — 0..1 email_otps (one active verification code per user)
+Users.hasOne(EmailOtps, { foreignKey: "userId", as: "emailOtp", onDelete: "CASCADE" });
+EmailOtps.belongsTo(Users, { foreignKey: "userId" });
 
 // users (teacher) 1 — * courses
 Users.hasMany(Courses, { foreignKey: "teacherId", as: "courses", onDelete: "RESTRICT" });

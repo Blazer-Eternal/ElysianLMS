@@ -29,7 +29,7 @@ const Users = sequelize.define<UserModelInterface>(
     },
     passwordHash: {
       type: Sequelize.TEXT,
-      allowNull: false,
+      allowNull: true, // null for Google-only accounts (no password)
     },
     role: {
       type: Sequelize.ENUM(...Object.values(RoleEnum)),
@@ -44,6 +44,15 @@ const Users = sequelize.define<UserModelInterface>(
       type: Sequelize.BOOLEAN,
       allowNull: false,
       defaultValue: false,
+    },
+    emailVerified: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
+    googleSub: {
+      type: Sequelize.STRING(255),
+      allowNull: true,
     },
     createdAt: {
       type: Sequelize.DATE,
@@ -63,6 +72,12 @@ const Users = sequelize.define<UserModelInterface>(
         name: "users_email_lower_key",
         unique: true,
         fields: [Sequelize.fn("lower", Sequelize.col("email"))],
+      },
+      {
+        name: "users_google_sub_key",
+        unique: true,
+        fields: ["google_sub"],
+        where: { google_sub: { [Sequelize.Op.ne]: null } },
       },
       { name: "users_role_idx", fields: ["role"] },
     ],

@@ -15,4 +15,5 @@ export * from "./quizAttemptRepository";
 export * from "./attemptAnswerRepository";
 export * from "./sessionRepository";
 export * from "./passwordResetTokenRepository";
+export * from "./emailOtpRepository";
 export * from "./dashboardRepository";

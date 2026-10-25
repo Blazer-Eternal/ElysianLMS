@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import router from "./api/routes";
 import { corsOptions } from "./config";
 import { errorHandler, globalLimiter } from "./middleware";
+import { swaggerSpec, swaggerUi } from "./swagger/swagger";
 
 const app = express();
 
@@ -50,6 +51,14 @@ app.get("/", (_req, res) => {
 
 app.use("/api", globalLimiter);
 app.use("/api", router);
+
+// Interactive API documentation (Swagger UI). The raw OpenAPI document is
+// served at /api-docs.json; the browsable UI lives at /api-docs.
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.get("/api-docs.json", (_req, res) => {
+  res.json(swaggerSpec);
+});
+
 app.use(errorHandler);
 
 export default app;

@@ -15,6 +15,7 @@ import QuizQuestions from "./quizQuestionModel";
 import QuizOptions from "./quizOptionModel";
 import QuizAttempts from "./quizAttemptModel";
 import AttemptAnswers from "./attemptAnswerModel";
+import EmailOtps from "./emailOtpModel";
 import "./associations";
 
 const Models = {
@@ -35,6 +36,7 @@ const Models = {
   QuizOptions,
   QuizAttempts,
   AttemptAnswers,
+  EmailOtps,
 };
 
 export default Models;

@@ -42,3 +42,20 @@ export const rateLimitConfig = {
     loginMax: Number(process.env.LOGIN_RATE_LIMIT_MAX) || 10,
     sensitiveMax: Number(process.env.SENSITIVE_RATE_LIMIT_MAX) || 10,
 };
+
+// Google Sign-In: the OAuth client ID from Google Cloud Console. The backend
+// verifies the ID token's signature and checks the audience matches this ID.
+// Leave unset to disable the Google flow entirely (endpoints return 503).
+export const googleClientId = process.env.GOOGLE_CLIENT_ID;
+
+// Email OTP verification for unverified Google sign-ins.
+//  - ttl: how long a single code stays valid (default 2 minutes).
+//  - maxSends: total codes before resends stop (1 initial + 2 resends).
+//  - maxAttempts: wrong entries before a lockout (default 3).
+//  - lockHours: how long the account is locked after maxAttempts (default 24).
+export const otpConfig = {
+    ttlMin: Number(process.env.OTP_TTL_MIN) || 2,
+    maxSends: Number(process.env.OTP_MAX_SENDS) || 3,
+    maxAttempts: Number(process.env.OTP_MAX_ATTEMPTS) || 3,
+    lockHours: Number(process.env.OTP_LOCK_HOURS) || 24,
+};

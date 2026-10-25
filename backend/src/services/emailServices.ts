@@ -22,4 +22,21 @@ export class EmailServices {
 
     console.info(`[email] password reset link for ${email}:\n  ${resetUrl}`);
   }
+
+  // Verification code for a Google sign-in whose email isn't verified yet.
+  // Same delivery seam as password reset: console in dev, a real provider in
+  // production. The code is 6 digits and short-lived — never log it in prod.
+  public static sendVerificationOtp(email: string, code: string, ttlMin: number): void {
+    if (environment === "production") {
+      console.warn(
+        `[email] verification requested for ${email} but no email provider is configured — code not delivered. ` +
+          `Configure an SMTP/provider in EmailServices before enabling email verification in production.`
+      );
+      return;
+    }
+
+    console.info(
+      `[email] verification code for ${email} (valid ${ttlMin} min):\n  ${code}`
+    );
+  }
 }
