@@ -96,3 +96,4 @@ export interface MyOrder {
     thumbnailUrl: string | null;
   };
 }
+
