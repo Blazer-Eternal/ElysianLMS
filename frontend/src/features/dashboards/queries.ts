@@ -31,3 +31,4 @@ export function useAdminDashboard() {
     queryFn: () => getData<AdminDashboard>({ method: "GET", url: "/dashboard/admin" }),
   });
 }
+
